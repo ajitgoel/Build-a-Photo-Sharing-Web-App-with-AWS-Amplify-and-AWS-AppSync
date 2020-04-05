@@ -1,24 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getAlbum = /* GraphQL */ `
-  query GetAlbum($id: ID!) {
-    getAlbum(id: $id) {
-      id
-      name
-      photos {
-        items {
-          id
-          albumId
-          bucket
-          owner
-        }
-        nextToken
-      }
-      owner
-    }
-  }
-`;
 export const listAlbums = /* GraphQL */ `
   query ListAlbums(
     $filter: ModelAlbumFilterInput
@@ -29,12 +11,31 @@ export const listAlbums = /* GraphQL */ `
       items {
         id
         name
+        owner
         photos {
           nextToken
         }
-        owner
       }
       nextToken
+    }
+  }
+`;
+export const getAlbum = /* GraphQL */ `
+  query GetAlbum($id: ID!) {
+    getAlbum(id: $id) {
+      id
+      name
+      owner
+      photos {
+        items {
+          id
+          albumId
+          bucket
+          labels
+          owner
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -43,14 +44,6 @@ export const getPhoto = /* GraphQL */ `
     getPhoto(id: $id) {
       id
       albumId
-      album {
-        id
-        name
-        photos {
-          nextToken
-        }
-        owner
-      }
       bucket
       fullsize {
         key
@@ -61,6 +54,15 @@ export const getPhoto = /* GraphQL */ `
         key
         width
         height
+      }
+      labels
+      album {
+        id
+        name
+        owner
+        photos {
+          nextToken
+        }
       }
       owner
     }
@@ -76,11 +78,6 @@ export const listPhotos = /* GraphQL */ `
       items {
         id
         albumId
-        album {
-          id
-          name
-          owner
-        }
         bucket
         fullsize {
           key
@@ -91,6 +88,12 @@ export const listPhotos = /* GraphQL */ `
           key
           width
           height
+        }
+        labels
+        album {
+          id
+          name
+          owner
         }
         owner
       }
@@ -116,11 +119,6 @@ export const listPhotosByAlbum = /* GraphQL */ `
       items {
         id
         albumId
-        album {
-          id
-          name
-          owner
-        }
         bucket
         fullsize {
           key
@@ -132,9 +130,55 @@ export const listPhotosByAlbum = /* GraphQL */ `
           width
           height
         }
+        labels
+        album {
+          id
+          name
+          owner
+        }
         owner
       }
       nextToken
+    }
+  }
+`;
+export const searchPhotos = /* GraphQL */ `
+  query SearchPhotos(
+    $filter: SearchablePhotoFilterInput
+    $sort: SearchablePhotoSortInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    searchPhotos(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        albumId
+        bucket
+        fullsize {
+          key
+          width
+          height
+        }
+        thumbnail {
+          key
+          width
+          height
+        }
+        labels
+        album {
+          id
+          name
+          owner
+        }
+        owner
+      }
+      nextToken
+      total
     }
   }
 `;

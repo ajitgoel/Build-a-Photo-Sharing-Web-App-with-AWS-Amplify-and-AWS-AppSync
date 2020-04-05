@@ -9,16 +9,17 @@ export const createAlbum = /* GraphQL */ `
     createAlbum(input: $input, condition: $condition) {
       id
       name
+      owner
       photos {
         items {
           id
           albumId
           bucket
+          labels
           owner
         }
         nextToken
       }
-      owner
     }
   }
 `;
@@ -30,16 +31,17 @@ export const updateAlbum = /* GraphQL */ `
     updateAlbum(input: $input, condition: $condition) {
       id
       name
+      owner
       photos {
         items {
           id
           albumId
           bucket
+          labels
           owner
         }
         nextToken
       }
-      owner
     }
   }
 `;
@@ -51,16 +53,17 @@ export const deleteAlbum = /* GraphQL */ `
     deleteAlbum(input: $input, condition: $condition) {
       id
       name
+      owner
       photos {
         items {
           id
           albumId
           bucket
+          labels
           owner
         }
         nextToken
       }
-      owner
     }
   }
 `;
@@ -72,14 +75,6 @@ export const createPhoto = /* GraphQL */ `
     createPhoto(input: $input, condition: $condition) {
       id
       albumId
-      album {
-        id
-        name
-        photos {
-          nextToken
-        }
-        owner
-      }
       bucket
       fullsize {
         key
@@ -90,6 +85,15 @@ export const createPhoto = /* GraphQL */ `
         key
         width
         height
+      }
+      labels
+      album {
+        id
+        name
+        owner
+        photos {
+          nextToken
+        }
       }
       owner
     }
@@ -103,14 +107,6 @@ export const updatePhoto = /* GraphQL */ `
     updatePhoto(input: $input, condition: $condition) {
       id
       albumId
-      album {
-        id
-        name
-        photos {
-          nextToken
-        }
-        owner
-      }
       bucket
       fullsize {
         key
@@ -121,6 +117,15 @@ export const updatePhoto = /* GraphQL */ `
         key
         width
         height
+      }
+      labels
+      album {
+        id
+        name
+        owner
+        photos {
+          nextToken
+        }
       }
       owner
     }
@@ -134,14 +139,6 @@ export const deletePhoto = /* GraphQL */ `
     deletePhoto(input: $input, condition: $condition) {
       id
       albumId
-      album {
-        id
-        name
-        photos {
-          nextToken
-        }
-        owner
-      }
       bucket
       fullsize {
         key
@@ -152,6 +149,15 @@ export const deletePhoto = /* GraphQL */ `
         key
         width
         height
+      }
+      labels
+      album {
+        id
+        name
+        owner
+        photos {
+          nextToken
+        }
       }
       owner
     }
